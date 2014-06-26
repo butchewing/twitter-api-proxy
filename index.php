@@ -27,8 +27,8 @@ if ( $format === "xml" ) {
 	header('Content-Type: application/xml; charset=utf-8');
 	$xml = '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL;
 	$xml.= '<channel>'.PHP_EOL;
-	$xml.= '  <title>Twitter API Proxy</title>'.PHP_EOL;
-	$xml.= '  <description></description>'.PHP_EOL;
+	$xml.= '  <title>TAP - twitter-api-proxy</title>'.PHP_EOL;
+	$xml.= '  <description>Twitter API Proxy with added XML response</description>'.PHP_EOL;
 	$xml.= '  <link>'.'http://'.$_SERVER["SERVER_NAME"].'</link>'.PHP_EOL;
 
 	// Get the status
