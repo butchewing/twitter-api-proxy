@@ -1,16 +1,16 @@
-<?php 
+<?php
 require_once 'config.php';
 require_once 'lib/twitter/twitteroauth.php';
- 
+
 function getConnectionWithAccessToken($cons_key, $cons_secret, $oauth_token, $oauth_token_secret) {
   $connection = new TwitterOAuth($cons_key, $cons_secret, $oauth_token, $oauth_token_secret);
   return $connection;
 }
 
-function remove_querystring_var($url, $key) { 
-	$url = preg_replace('/(.*)(?|&)' . $key . '=[^&]+?(&)(.*)/i', '$1$2$4', $url . '&'); 
-	$url = substr($url, 0, -1); 
-	return $url; 
+function remove_querystring_var($url, $key) {
+	$url = preg_replace('/(.*)(?|&)' . $key . '=[^&]+?(&)(.*)/i', '$1$2$4', $url . '&');
+	$url = substr($url, 0, -1);
+	return $url;
 }
 
 $connection = getConnectionWithAccessToken($consumerkey, $consumersecret, $accesstoken, $accesstokensecret);
@@ -36,7 +36,7 @@ if ( $format === "xml" ) {
 	  // Build the tweet url as we don't get this in the status object
 	  $url = 'https://twitter.com/'.$tweet->user->screen_name.'/status/'.$tweet->id_str;
 	  $date = explode(' ', $tweet->created_at);
-	  
+
 	  $xml.= '  <item>'.PHP_EOL;
 	  $xml.= '    <title/>'.PHP_EOL;
 	  $xml.= '    <description>'.$tweet->text.'</description>'.PHP_EOL;
@@ -81,5 +81,6 @@ if ( $format === "xml" ) {
 	// Return the xml for the rss
 	print $xml;
 } else {
+  header('Content-Type: application/json');
 	echo json_encode($tweets);
 }
